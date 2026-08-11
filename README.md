@@ -1,3 +1,5 @@
+
+
 # Dynamo-Style Distributed Key-Value Storage
 This is a distributed key-value storage with partitioning, replication, and failure handling. It is a simple version of [Amazon Dynamo](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf "Paper link"). The main goal of the distributed key-value storage system is to provide both availability and linearizability at the same time. In other words, the implementation should always perform read and write operations successfully even under failures (i.e., availability). At the same time, a read operation should always return the most recent value (i.e., linearizability).
 
@@ -20,6 +22,10 @@ This is a distributed key-value storage with partitioning, replication, and fail
 8. **Failure recovery:** When a node recovers after failure, it can copy all the object writes it missed during the failure.
 
 9. **Replication:** Replication is done exactly the same way as Dynamo does. In other words, a key-value pair is replicated over three consecutive partitions, starting from the partition that the key belongs to. Replication is implemented using the [Chain replication](https://www.cs.cornell.edu/home/rvr/papers/OSDI04.pdf "Paper link") strategy.
+
+## Utilities
+
+- **getNodeIdFromKey.py**: A helper script to determine which node(s) are responsible for a given key. Run `python getNodeIdFromKey.py <key>` to view the SHA1 hash computation and the assigned node information based on the 5-node ring.
 
 ## Acknowledgement
 
